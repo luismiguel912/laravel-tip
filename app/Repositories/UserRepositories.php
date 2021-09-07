@@ -30,4 +30,13 @@ class UserRepositories{
         $users = $this->user::find($id);
         return response()->json($users);
     }
+
+    /*
+    * * update
+    ** Funcion que retorna el usuario por su $id
+    */
+    public function update(User $user){
+        $user->save();
+        return response()->json($user);
+    }
 }

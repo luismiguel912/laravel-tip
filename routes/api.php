@@ -23,4 +23,6 @@ Route::prefix('/user')->group(function (){
     Route::GET('all','UserController@index');
     // Ruta para obtener un usuario por su id
     Route::GET('/{user_id}','UserController@show');
+    // Ruta para actualizar un usuario por su id
+    Route::PUT('/update/{user}','UserController@update');
 });
