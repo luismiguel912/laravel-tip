@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('/user')->group(function (){
+    // Ruta para obtener todos los usuarios
+    Route::GET('all','UserController@index');
+    // Ruta para obtener un usuario por su id
+    Route::GET('/{user_id}','UserController@show');
+});
