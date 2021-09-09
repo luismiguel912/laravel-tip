@@ -1,8 +1,18 @@
 <?php
 namespace App\Repositories;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
+
 
 class UserRepositories extends BaseRepository{
+
+    /*
+    * * RELATIONS
+    ** Es un arreglo de relaciones de user
+    */
+    const RELATIONS = [
+        'rolUser'
+    ];
 
     /*
     * * __construct
@@ -15,7 +25,8 @@ class UserRepositories extends BaseRepository{
         ** Se Hace referencia ala clase padre que es BaseRepository
         ** Con esto accedemos a todos los metodos, pasandole el modelo 
         */
-        parent::__construct($user);
+        // parent::__construct($user);
+        parent::__construct($user,self::RELATIONS);
     }
     /*
     * * getUserByName
@@ -28,5 +39,15 @@ class UserRepositories extends BaseRepository{
             ])->where('name',$name)->get();
         return response()->json($users);
     }
+
+    /*
+    * * all
+    ** Funcion que retorna todos los usuarios en base de datos
+    // */
+    // public function all(){
+    //     // return self::RELATIONS;
+    //     $model = $this->model->with(self::RELATIONS)->get();
+    //     return response()->json($model);
+    // }
 }
 

@@ -5,12 +5,14 @@ use App\User;
 
 class BaseRepository{
     protected $model;
+    protected $relations;
     /*
     * * __construct
     ** se inicializa el modelo User en el contructor para tenerlo de forma global
     */
-    public function __construct(Model $model){
+    public function __construct(Model $model, array $relations = []){
         $this->model = $model;
+        $this->relations = $relations;
     }
 
     /*
@@ -18,7 +20,11 @@ class BaseRepository{
     ** Funcion que retorna todos los usuarios en base de datos
     */
     public function all(){
-        $model = $this->model->get();
+        $query =  $this->model; 
+        if(!empty($this->relations)){
+            $query = $query->with($this->relations);
+        }
+        $model = $query->get();
         return response()->json($model);
     }
 
