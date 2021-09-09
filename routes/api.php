@@ -20,9 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('/user')->group(function (){
     // Ruta para obtener todos los usuarios
-    Route::GET('all','UserController@index');
+    Route::GET('/all','UserController@index');
     // Ruta para obtener un usuario por su id
     Route::GET('/{user_id}','UserController@show');
     // Ruta para actualizar un usuario por su id
     Route::PUT('/update/{user}','UserController@update');
+
+    Route::GET('name/{name}','UserController@getUserByName');
 });

@@ -48,4 +48,10 @@ class UserController extends Controller
         $user = $this->UserRepositories->update($user);
         return response()->json($user);
     }
+
+    public function getUserByName(String $name){
+        $user = $this->UserRepositories->getUserByName($name);
+        return response()->json($user);
+
+    }
 }

@@ -2,41 +2,31 @@
 namespace App\Repositories;
 use App\User;
 
-class UserRepositories{
+class UserRepositories extends BaseRepository{
 
-    private $user;
     /*
     * * __construct
     ** se inicializa el modelo User en el contructor para tenerlo de forma global
     */
-    public function __construct(){
-        $this->user = new User();
+    public function __construct(User $user){
+        /*
+        * * parent::____construct
+        * * Se hace uso de la Herencia de BaseRepository
+        ** Se Hace referencia ala clase padre que es BaseRepository
+        ** Con esto accedemos a todos los metodos, pasandole el modelo 
+        */
+        parent::__construct($user);
     }
-
     /*
-    * * all
-    ** Funcion que retorna todos los usuarios en base de datos
+    * * getUserByName
+    ** Funcion que obtiene el usuario y su rol
+    ** Esta funcion es propia del usuario por eso no esta en BaseRepository
     */
-    public function all(){
-        $users = $this->user::all();
+    public function getUserByName($name){
+        $users = User::with([
+            'rolUser'
+            ])->where('name',$name)->get();
         return response()->json($users);
-    }
-
-    /*
-    * * show
-    ** Funcion que retorna el usuario por su $id
-    */
-    public function show($id){
-        $users = $this->user::find($id);
-        return response()->json($users);
-    }
-
-    /*
-    * * update
-    ** Funcion que retorna el usuario por su $id
-    */
-    public function update(User $user){
-        $user->save();
-        return response()->json($user);
     }
 }
+
