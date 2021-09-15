@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Repositories\UserRepositories;
+use App\Http\Requests\StoreUserRequest;
 
 class UserController extends Controller
 {
@@ -19,10 +20,10 @@ class UserController extends Controller
     }
 
     /*
-    * * index
-    ** Funcion que retorna los todos los usuarios, Haciendo uso de Patron Repositories
+    * * save
+    ** Funcion que crea un nuevo usuario
     */
-    public function save(Request $request,  User $user){
+    public function save(StoreUserRequest $request,  User $user){
         $user->fill($request->all());
         $user = $this->UserRepositories->save($user);
         return response()->json($user);
