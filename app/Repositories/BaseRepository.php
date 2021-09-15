@@ -20,7 +20,7 @@ class BaseRepository{
     ** Funcion que retorna todos los usuarios en base de datos
     */
     public function all(){
-        $query =  $this->model; 
+        $query =  $this->model;
         if(!empty($this->relations)){
             $query = $query->with($this->relations);
         }
@@ -42,6 +42,15 @@ class BaseRepository{
     ** Funcion que retorna el usuario por su $id
     */
     public function update(model $model){
+        $model->save();
+        return response()->json($model);
+    }
+
+    /*
+    * * save
+    ** Funcion crea un nuevo usuario
+    */
+    public function save(model $model){
         $model->save();
         return response()->json($model);
     }

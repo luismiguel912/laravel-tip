@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('/user')->group(function (){
+    // Ruta para crear un nuevo usuario
+    Route::POST('/save','UserController@save');
     // Ruta para obtener todos los usuarios
     Route::GET('/all','UserController@index');
     // Ruta para obtener un usuario por su id

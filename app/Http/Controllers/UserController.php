@@ -22,6 +22,16 @@ class UserController extends Controller
     * * index
     ** Funcion que retorna los todos los usuarios, Haciendo uso de Patron Repositories
     */
+    public function save(Request $request,  User $user){
+        $user->fill($request->all());
+        $user = $this->UserRepositories->save($user);
+        return response()->json($user);
+    }
+
+    /*
+    * * index
+    ** Funcion que retorna los todos los usuarios, Haciendo uso de Patron Repositories
+    */
     public function index(){
         $usuarios = $this->UserRepositories->all();
         return response()->json($usuarios);

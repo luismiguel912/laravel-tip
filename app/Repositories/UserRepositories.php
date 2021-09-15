@@ -23,7 +23,7 @@ class UserRepositories extends BaseRepository{
         * * parent::____construct
         * * Se hace uso de la Herencia de BaseRepository
         ** Se Hace referencia ala clase padre que es BaseRepository
-        ** Con esto accedemos a todos los metodos, pasandole el modelo 
+        ** Con esto accedemos a todos los metodos, pasandole el modelo
         */
         // parent::__construct($user);
         parent::__construct($user,self::RELATIONS);
@@ -48,6 +48,17 @@ class UserRepositories extends BaseRepository{
     //     // return self::RELATIONS;
     //     $model = $this->model->with(self::RELATIONS)->get();
     //     return response()->json($model);
+    // }
+
+    /*
+    * * Save
+    ** Funcion que crea un nuevo usuario
+    */
+    // public function save($request){
+    //     $user=(new User)->fill( request()->all() );
+    //     $user->save();
+    //     // $model->save();
+    //     return response()->json($user);
     // }
 }
 
